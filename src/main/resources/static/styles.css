@@ -1,0 +1,63 @@
+:root {
+  --bg: #0b1020;
+  --panel: #121a33;
+  --text: #f2f5ff;
+  --muted: #c7cbe2;
+  --primary: #5b8cff;
+  --danger: #ff5b6b;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: ui-sans-serif, system-ui, sans-serif; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container { max-width: 900px; margin: 40px auto; padding: 0 16px; }
+
+.nav {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--panel); padding: 12px 16px;
+}
+
+.nav a { color: var(--text); text-decoration: none; margin-right: 12px; }
+.nav a:hover { text-decoration: underline; }
+
+h1 { margin-bottom: 24px; font-size: 28px; }
+
+.card, .profile-info, .output {
+  background: var(--panel);
+  border-radius: 8px; padding: 16px; margin-bottom: 16px;
+}
+
+label { display: block; font-size: 14px; color: var(--muted); margin: 12px 0 6px; }
+
+input {
+  width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #2d3a61;
+  background: #0e152b; color: var(--text);
+}
+input:focus { outline: none; border-color: var(--primary); }
+
+button {
+  border: none; border-radius: 6px; padding: 10px 14px;
+  background: var(--primary); color: #fff; cursor: pointer;
+  margin-top: 12px;
+}
+button.secondary { background: #2a365d; }
+
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.status { margin-top: 8px; color: var(--muted); font-size: 13px; }
+
+.hero { text-align: center; margin-bottom: 32px; }
+.hero h1 { margin-bottom: 8px; color: var(--primary); }
+.hero p { color: var(--muted); font-size: 18px; }
+
+.auth-footer, .profile-actions { margin-top: 20px; padding-top: 16px; text-align: center; }
+.auth-footer a { color: var(--primary); text-decoration: none; }
+.auth-footer a:hover { text-decoration: underline; }
+
+.profile-success { color: var(--primary); font-weight: 500; }
+.profile-error { color: var(--danger); font-weight: 500; }

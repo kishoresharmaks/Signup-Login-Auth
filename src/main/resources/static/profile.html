@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - Auth Demo</title>
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+    <nav class="nav">
+        <div><a href="/">Auth Demo</a></div>
+        <div class="links">
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Your Profile</h1>
+            <p>Manage your account information</p>
+        </div>
+
+        <section class="card">
+            <h2>Account Information</h2>
+            <div id="profile-content">
+                <button id="load-profile-btn">Load Profile</button>
+                <div class="status" id="profile-status"></div>
+                <div id="profile-info" class="profile-info"></div>
+            </div>
+            
+            <div class="profile-actions">
+                <button id="logout-btn" class="secondary">Sign Out</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadBtn = document.getElementById('load-profile-btn');
+            const logoutBtn = document.getElementById('logout-btn');
+            const status = document.getElementById('profile-status');
+            const profileInfo = document.getElementById('profile-info');
+            
+            // Load profile function
+            loadBtn.addEventListener('click', async () => {
+                status.textContent = 'Loading profile...';
+                try {
+                    const res = await fetch('/api/auth/me', {
+                        credentials: 'include'
+                    });
+                    
+                    const result = await res.text();
+                    
+                    if (res.ok) {
+                        profileInfo.innerHTML = `<div class="profile-success">${result}</div>`;
+                        status.textContent = 'Profile loaded successfully';
+                        status.style.color = 'var(--primary)';
+                        loadBtn.textContent = 'Refresh Profile';
+                    } else {
+                        profileInfo.innerHTML = `<div class="profile-error">${result}</div>`;
+                        status.textContent = `Error: ${result}`;
+                        status.style.color = 'var(--danger)';
+                    }
+                } catch (err) {
+                    status.textContent = `Error: ${err.message}`;
+                    status.style.color = 'var(--danger)';
+                }
+            });
+            
+            // Logout function
+            logoutBtn.addEventListener('click', async () => {
+                status.textContent = 'Signing out...';
+                try {
+                    const res = await fetch('/api/auth/logout', {
+                        method: 'POST',
+                        credentials: 'include'
+                    });
+                    
+                    const result = await res.text();
+                    
+                    if (res.ok) {
+                        status.textContent = 'Signed out successfully. Redirecting...';
+                        status.style.color = 'var(--primary)';
+                        profileInfo.innerHTML = '';
+                        setTimeout(() => {
+                            window.location.href = '/login.html';
+                        }, 1500);
+                    } else {
+                        status.textContent = `Error: ${result}`;
+                        status.style.color = 'var(--danger)';
+                    }
+                } catch (err) {
+                    status.textContent = `Error: ${err.message}`;
+                    status.style.color = 'var(--danger)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
