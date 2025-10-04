@@ -1,5 +1,5 @@
 ## Login & Signup (Session-based, no JWT)
-
+## **(NOTE) This is my Learning Project**
 This project implements minimal signup and login using HttpSession (server-side sessions). Passwords are hashed with BCrypt; no JWT is used.
 
 ### Stack
@@ -21,7 +21,6 @@ This project implements minimal signup and login using HttpSession (server-side 
 - `src/main/resources/static/index.html` – Signup form (default landing page)
 - `src/main/resources/static/login.html` – Login form page
 - `src/main/resources/static/profile.html` – User profile and logout page
-- `src/main/resources/static/styles.css` – Modern dark theme styling
 
 ### Prerequisites
 - JDK 21+
@@ -52,35 +51,16 @@ The server runs on `http://localhost:8081` by default.
 The application includes a modern web interface with 3 dedicated pages:
 
 **1. Signup Page (`http://localhost:8081/` - Default landing page)**
-- Clean signup form with name, email, and password fields
-- Validates input and handles errors gracefully  
-- Redirects to login page after successful registration
-- Link to login page for existing users
 
 **2. Login Page (`http://localhost:8081/login.html`)**
 - Email and password login form
 - Establishes session cookies for authenticated users
-- Redirects to profile page after successful login
-- Link to signup page for new users
 
 **3. Profile Page (`http://localhost:8081/profile.html`)**
 - Displays current user information via `/api/auth/me`
 - "Load Profile" button to fetch user data
-- Sign out functionality with session cleanup
 - Protected route - requires authentication
 
-**UI Features:**
-- Modern dark theme with professional styling
-- Responsive design that works on mobile and desktop
-- Consistent navigation bar across all pages
-- Smooth animations and hover effects
-- Color-coded success/error messages
-- Automatic form redirects and page transitions
-
-**Navigation Flow:**
-```
-Signup → Login → Profile → Logout → Login
-```
 
 ### How Authentication Works (no JWT)
 1. User signs up or logs in.
@@ -169,26 +149,7 @@ The application includes a complete web interface built with vanilla HTML, CSS, 
 - Automatic session handling - no manual cookie management required
 - Session persistence across browser tabs and page refreshes
 
-**Frontend Features**
-- **Form Validation** - HTML5 validation + custom error handling
-- **Loading States** - Visual feedback during API calls
-- **Error Handling** - User-friendly error messages with color coding
-- **Auto-redirects** - Smooth navigation flow after successful actions
-- **Responsive Navigation** - Consistent header across all pages
 
-**Customization**
-The frontend can be easily customized:
-- Modify `styles.css` for different themes, colors, or layouts
-- Update HTML templates for different form fields or layouts
-- Enhance JavaScript functionality in individual page scripts
-- Add new pages by creating additional HTML files in `/static/`
-
-**External Frontend Integration**
-If building a separate frontend (React, Vue, Angular), note:
-- Enable CORS in Spring Boot configuration
-- Always include `credentials: 'include'` or `withCredentials: true`
-- Session cookies work automatically with same-origin requests
-- API endpoints return plain text responses (not JSON objects)
 
 ### Security Notes
 - BCrypt hashing is used; never store raw passwords.
