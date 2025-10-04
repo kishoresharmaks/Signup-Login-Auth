@@ -52,14 +52,14 @@ Password handling:
 
 ### API Endpoints
 
-Base path: `http://localhost:8080`
+Base path: `http://localhost:8081`
 
 - POST `/api/auth/signup`
-  - Body: `{ "name": "Alice", "email": "alice@example.com", "password": "secret" }`
+  - Body: `{ "name": "Kishore", "email": "kishore@ks.com", "password": "secret" }`
   - 201 Created on success. Stores hashed password; does not log user in automatically.
 
 - POST `/api/auth/login`
-  - Body: `{ "email": "alice@example.com", "password": "secret" }`
+  - Body: `{ "email": "kishore@ks.com", "password": "secret" }`
   - 200 OK on success with user info; creates a server session (cookie-based).
 
 - GET `/api/auth/me`
@@ -110,8 +110,6 @@ curl -i -b cookies.txt -X POST http://localhost:8080/api/auth/logout
 
 ### Security Notes
 - BCrypt hashing is used; never store raw passwords.
-- `User.password` is annotated with `@JsonIgnore` so it is never exposed in API responses.
-- For production, add CSRF protection, rate limiting, account lockouts, and secure cookie settings.
 
 ### Common Issues
 - 401 on `/me`: The session cookie wasn’t sent. Ensure the client preserves and sends cookies.
