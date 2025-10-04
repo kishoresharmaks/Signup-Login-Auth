@@ -37,7 +37,7 @@ Run the app:
 mvn spring-boot:run
 ```
 
-The server runs on `http://localhost:8080` by default.
+The server runs on `http://localhost:8081` by default.
 
 ### How Authentication Works (no JWT)
 1. User signs up or logs in.
